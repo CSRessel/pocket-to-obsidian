@@ -37,8 +37,6 @@ def write_articles_to_csv_file(articles, csv_filename):
         for article in articles:
             writer.writerow(article)
 
-
-
 def main():
     articles = extract_articles_from_html_file("sample-pocket-export.html")
     print(articles)
