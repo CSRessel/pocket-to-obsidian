@@ -1,0 +1,21 @@
+# virtualenv
+venv/
+
+# pyc files
+*.pyc
+
+# __pycache__
+__pycache__/
+
+# .DS_Store
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Pandas
+.pydata_store/
+
+# Matplotlib
+.matplotlib/
+
