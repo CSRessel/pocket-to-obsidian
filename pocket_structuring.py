@@ -12,10 +12,12 @@ def parse_article(html_line):
     tags = re.search(r'tags="(.*?)"', html_line).group(1)
     return title, url, time_added, tags
 
-def extract_articles_from_html(html_content):
+def extract_articles_from_html_file(html_content_filename):
     """
     Extract articles from the given HTML content.
     """
+    with open(html_content_filename, "r") as file:
+        html_content = file.read()
     lines = html_content.split("\n")
     articles = []
     for line in lines:
@@ -25,7 +27,7 @@ def extract_articles_from_html(html_content):
             articles.append({"Title": title, "URL": url, "Time Added": readable_date, "Tags": list(tags.split(","))})
     return articles
 
-def write_articles_to_csv(articles, csv_filename):
+def write_articles_to_csv_file(articles, csv_filename):
     """
     Write the list of articles to a CSV file.
     """
@@ -35,13 +37,13 @@ def write_articles_to_csv(articles, csv_filename):
         for article in articles:
             writer.writerow(article)
 
+
+
 def main():
-    with open("sample-pocket-export.html", "r") as file:
-        html_content = file.read()
-    articles = extract_articles_from_html(html_content)
+    articles = extract_articles_from_html_file("sample-pocket-export.html")
     print(articles)
     csv_filename = "output.csv"
-    write_articles_to_csv(articles, csv_filename)
+    write_articles_to_csv_file(articles, csv_filename)
 
 if __name__ == "__main__":
     main()
