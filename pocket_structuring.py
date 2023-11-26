@@ -22,7 +22,7 @@ def extract_articles_from_html(html_content):
         if '<li><a href=' in line:
             title, url, time_added, tags = parse_article(line)
             readable_date = datetime.utcfromtimestamp(time_added).strftime('%Y-%m-%d %H:%M:%S')
-            articles.append({"Title": title, "URL": url, "Time Added": readable_date, "Tags": tags})
+            articles.append({"Title": title, "URL": url, "Time Added": readable_date, "Tags": list(tags.split(","))})
     return articles
 
 def write_articles_to_csv(articles, csv_filename):
