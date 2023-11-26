@@ -1,3 +1,6 @@
+# Optionally, switch to:
+# https://www.toptal.com/developers/gitignore/api/python,linux,macos,jupyternotebooks,visualstudiocode
+
 # virtualenv
 venv/
 
