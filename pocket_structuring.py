@@ -7,7 +7,7 @@ def parse_article(html_line):
     Parse an individual article line from the HTML input.
     """
     url = re.search(r'href="(.*?)"', html_line).group(1)
-    title = re.search(r'>(.*?)</a>', html_line).group(1)
+    title = re.search(r'<a href.*>(.*?)</a>', html_line).group(1)
     time_added = int(re.search(r'time_added="(.*?)"', html_line).group(1))
     tags = re.search(r'tags="(.*?)"', html_line).group(1)
     return title, url, time_added, tags
@@ -39,6 +39,7 @@ def main():
     with open("sample-pocket-export.html", "r") as file:
         html_content = file.read()
     articles = extract_articles_from_html(html_content)
+    print(articles)
     csv_filename = "output.csv"
     write_articles_to_csv(articles, csv_filename)
 
